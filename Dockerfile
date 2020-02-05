@@ -1,7 +1,8 @@
-FROM ubuntu:16.04
+FROM tomcat:8.5.37-jre8
 MAINTAINER drk.cherukuri@gmail.com
 RUN apt-get update
-RUN apt-get install -y apache2
-EXPOSE 80
-ENTRYPOINT [“ping”]
-CMD [“google.com”]
+ADD https://warfile1.s3.amazonaws.com/mahaLogin-1.0.war /usr/local/tomcat/webapps/
+WORKDIR /usr/local/tomcat/webapps/
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+
